@@ -2,8 +2,8 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var config = require('config');
-var Film = require('models/film').Film;
-var filmName = "";
+var Item = require('models/item').Item;
+var itemName = "";
 
 var app = express();
 app.set('views', __dirname + '/views');
@@ -35,11 +35,11 @@ app.get('/', function(req, res, next) {
 });
 
 app.post('/reviews', function(req, res, next){
-  filmName = req.body.FilmName;
-  console.log(filmName);
-  Film.find({
-    name: filmName}, function(err, zootopia){
-    res.send(zootopia);
+  itemName = req.body.ItemName;
+  console.log(itemName);
+  Item.find({
+    name: itemName}, function(err, items){
+    res.send(items);
   });
 });
 
@@ -49,18 +49,15 @@ app.get('/newreview', function(req, res, next) {
 
 app.post('/result', function (req, res, next) {
   console.log(req.body.text);
-  var film = new Film({
-    name: filmName,
+  var item = new Item({
+    name: itemName,
     kind: "film",
     text: req.body.text
   });
-  film.save(function(err, thor) {
+  item.save(function(err, thor) {
     if (err) return console.error(err);
   });
-  Film.find({
-    name: filmName}, function(err, zootopia){
-    console.log(zootopia);
-  });
+    
   res.send("Review is adding!");
 });
 
