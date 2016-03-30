@@ -2,8 +2,6 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var config = require('config');
-var Item = require('models/item').Item;
-var itemName = "";
 
 var app = express();
 app.set('views', __dirname + '/views');
@@ -30,35 +28,10 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function(req, res, next) {
-  res.render('index');
-});
-
-app.post('/reviews', function(req, res, next){
-  itemName = req.body.ItemName;
-  Item.find({
-    name: itemName}, function(err, items){
-    res.send(items);
-  });
-});
-
-app.get('/newreview', function(req, res, next) {
-  res.render('newreview');
-});
-
-app.post('/result', function (req, res, next) {
-  console.log(req.body.text);
-  var item = new Item({
-    name: itemName,
-    kind: "film",
-    text: req.body.text
-  });
-  item.save(function(err, thor) {
-    if (err) return console.error(err);
-  });
-
-  res.send("Review is adding!");
-});
+app.use('/',routes );
+app.use('/reviews',routes);
+app.use('/newreview',routes);
+app.use('/result',routes);
 
 app.use(function(req, res, next){
   res.status(404);
@@ -72,4 +45,4 @@ app.use(function(err, req, res, next){
   return;
 });
 
-
+module.exports = app;
