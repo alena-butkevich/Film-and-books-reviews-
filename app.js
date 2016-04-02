@@ -10,6 +10,7 @@ app.set('view engine', 'ejs');
 http.createServer(app).listen(config.get('port'), function(){
   console.log('Express server starts');
 });
+
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -28,9 +29,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/',routes );
-app.use('/reviews',routes);
-app.use('/newreview',routes);
-app.use('/result',routes);
+app.use('/books',routes );
+app.use('/films',routes );
 
 app.use(function(req, res, next){
   res.status(404);

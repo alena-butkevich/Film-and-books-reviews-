@@ -6,17 +6,17 @@ var schema = new Schema({
         required:true
     },
     annotation:{
-        type:String
+        type:String,
     },
-    year:{
-        type:Number,
+    author:{
+        type:String,
         required:true
     },
     image:{
         type:String
     },
     rating:{
-        type:[Number]
+        type: [Number]
     },
     comment:
         [{type: Schema.Types.ObjectId, ref: 'Story'}]
