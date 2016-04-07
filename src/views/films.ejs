@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<ul>
+    <% for(var i=0; i<Films.length; i++) {%>
+    <li> <a href="filmReviews" id=<%=Films[i].id %>><%= Films[i].name %></a></li>
+    <% } %>
+</ul>
+</body>
+</html>

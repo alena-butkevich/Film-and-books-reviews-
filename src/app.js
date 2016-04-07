@@ -1,7 +1,7 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var config = require('config');
+var config = require('../config/index');
 
 var app = express();
 app.set('views', __dirname + '/views');

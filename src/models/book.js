@@ -1,4 +1,4 @@
-var mongoose = require('libs/mongoose'),
+var mongoose = require('../libs/mongoose'),
     Schema = mongoose.Schema;
 var schema = new Schema({
     name:{
@@ -6,20 +6,20 @@ var schema = new Schema({
         required:true
     },
     annotation:{
-        type:String
+        type:String,
     },
-    year:{
-        type:Number,
+    author:{
+        type:String,
         required:true
     },
     image:{
         type:String
     },
     rating:{
-        type:[Number]
+        type: [Number]
     },
-    comment:
+    comments:
         [{type: Schema.Types.ObjectId, ref: 'Story'}]
 });
 
-exports.Film = mongoose.model('Film', schema);
+exports.Book = mongoose.model('Book', schema);
