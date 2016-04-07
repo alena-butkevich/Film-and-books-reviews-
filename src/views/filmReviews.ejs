@@ -11,6 +11,11 @@
     <li> <%= film.annotation %></li>
     <li><img src = <%= film.image %>></li>
     <li> <%= rating %></li>
+    <% for(var i=0; i<film.comments.length; i++) {%>
+    <li> <%= film.comments[i].text %></li>
+    <li> <%= film.comments[i].score %></li>
+    <li> <%= film.comments[i].date %></li>
+    <% } %>
 </ul>
 </body>
 </html>

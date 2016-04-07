@@ -1,5 +1,20 @@
 var mongoose = require('../libs/mongoose'),
     Schema = mongoose.Schema;
+var commentSchema = new Schema({
+    _creator : {
+        type: Schema.Types.ObjectId, ref: 'Film'
+    },
+    text:{
+        type:String,
+        required:true
+    },
+    score: {
+        type: Number
+    },
+    date:{
+        type:Date
+    }
+});
 var schema = new Schema({
     name:{
         type:String,
@@ -19,7 +34,7 @@ var schema = new Schema({
         type: [Number]
     },
     comments:
-        [{type: Schema.Types.ObjectId, ref: 'Story'}]
+        [commentSchema]
 });
 
 exports.Book = mongoose.model('Book', schema);
