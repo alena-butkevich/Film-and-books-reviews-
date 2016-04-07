@@ -85,10 +85,10 @@ describe("SAMPLE unit test",function(){
 
 describe("SAMPLE unit test",function(){
 
-    it("should return page to add review ",function(done){
+    it("should return json",function(done){
         server
             .post("/result")
-            .send ({text: "fgefghe", scope: Math.random() * (5 - 1) + 1})
+            .send ({text: "fgefghe", scope: Math.floor(Math.random() * (5 - 1 + 1)) + 1})
             .expect("Content-type",/json/)
             .expect(200)
             .end(function(err,res){
@@ -96,5 +96,4 @@ describe("SAMPLE unit test",function(){
                 done();
             });
     });
-
 });
